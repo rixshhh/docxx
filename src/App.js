@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Background from './components/Background';
+import Foreground from './components/Foreground';
+import Modal from './components/Modal';
+import { RiFileAddFill } from "react-icons/ri";
+import { useState } from 'react';
+
 
 function App() {
+
+  const [showModal,setShowModal] =useState(false)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="relative w-full h-screen bg-zinc-800">
+     <Background/>
+     <Foreground/>
+
+     <button className="fixed top-[90%] left-0 z-[5] w-full h-full flex gap-5 flex-wrap p-5" onClick={()=> setShowModal(true)} >
+        <span  className="w-8 h-8 bg-zinc-600 rounded-full flex items-center justify-center">
+        <RiFileAddFill size=".9em" color="#fff" />
+        </span>  
+      </button>
+     {showModal && <Modal onclose={()=> setShowModal(false)}/> }  
     </div>
   );
 }
